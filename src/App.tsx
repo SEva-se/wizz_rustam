@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { DiagnosticProvider } from './context/DiagnosticContext';
 import { StartScreen } from './screens/StartScreen';
 import { WizardScreen } from './screens/WizardScreen';

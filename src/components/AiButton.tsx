@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { Loader2 } from 'lucide-react';
 import { cn } from '../utils/cn';
 
@@ -6,7 +6,7 @@ interface AiButtonProps {
   onClick: () => void;
   isLoading: boolean;
   disabled?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 

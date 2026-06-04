@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDiagnostic } from '../context/DiagnosticContext';
 import { AiButton } from '../components/AiButton';
 import { callOpenAI, buildSummaryPrompt } from '../services/openai';

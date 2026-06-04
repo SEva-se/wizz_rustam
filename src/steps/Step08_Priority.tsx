@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDiagnostic } from '../context/DiagnosticContext';
 import { calcPriority } from '../utils/calculations';
 import { cn } from '../utils/cn';

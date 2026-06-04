@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDiagnostic } from '../context/DiagnosticContext';
 import { clearSession } from '../hooks/useAutoSave';
 import { exportToPDF } from '../utils/pdfExport';

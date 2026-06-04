@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDiagnostic } from '../context/DiagnosticContext';
 
 export function Step11_Product() {

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useDiagnostic } from '../context/DiagnosticContext';
 import { ComputedField } from '../components/ComputedField';
 import { calcAverageCheck, calcConversionRate, calcLTV } from '../utils/calculations';

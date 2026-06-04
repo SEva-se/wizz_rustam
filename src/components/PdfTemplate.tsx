@@ -1,4 +1,3 @@
-import React from 'react';
 import type { DiagnosticData } from '../types/diagnostic';
 import { formatCurrency } from '../utils/calculations';
 

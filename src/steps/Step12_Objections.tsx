@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 export function Step12_Objections() {
   const objections = [

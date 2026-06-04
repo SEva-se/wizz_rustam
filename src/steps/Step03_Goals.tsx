@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDiagnostic } from '../context/DiagnosticContext';
 import { Clock } from 'lucide-react';
 

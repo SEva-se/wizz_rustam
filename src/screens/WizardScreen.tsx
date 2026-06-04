@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { StepNavigation, STEPS } from '../components/StepNavigation';
 import { ProgressBar } from '../components/ProgressBar';
 

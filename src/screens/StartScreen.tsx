@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDiagnostic } from '../context/DiagnosticContext';
 import { loadSession } from '../hooks/useAutoSave';
 
