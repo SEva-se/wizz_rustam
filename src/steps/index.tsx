@@ -1,0 +1,12 @@
+export { Step02_Context } from './Step02_Context';
+export { Step03_Goals } from './Step03_Goals';
+export { Step04_Metrics } from './Step04_Metrics';
+export { Step05_Gap } from './Step05_Gap';
+export { Step06_Scoring } from './Step06_Scoring';
+export { Step07_Losses } from './Step07_Losses';
+export { Step08_Priority } from './Step08_Priority';
+export { Step09_Plan } from './Step09_Plan';
+export { Step10_Bridge } from './Step10_Bridge';
+export { Step11_Product } from './Step11_Product';
+export { Step12_Objections } from './Step12_Objections';
+export { Step13_Summary } from './Step13_Summary';
