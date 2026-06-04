@@ -66,7 +66,7 @@ export function WizardScreen({ onFinish }: WizardScreenProps) {
           </div>
         </header>
         
-        <main className="flex-1 overflow-y-auto px-12 py-10 max-w-3xl mx-auto w-full">
+        <main className="flex-1 overflow-y-auto px-12 py-10 max-w-4xl mx-auto w-full">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
