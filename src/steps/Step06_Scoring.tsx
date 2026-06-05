@@ -173,13 +173,13 @@ export function Step06_Scoring() {
           const zoneState = scoring.zones[zone.id as keyof typeof scoring.zones] as any;
           
           return (
-            <div key={zone.id} className="bg-surface border border-white/6 rounded-xl overflow-hidden">
-              <div className="bg-white/4 px-6 py-4 border-b border-white/6 flex justify-between items-center">
-                <h3 className="font-semibold text-[15px] text-white">{zone.title}</h3>
-                <div className="text-[14px] flex gap-4">
-                  <span>Балл: <span className="metric font-medium text-white">{zoneState.total}/20</span></span>
+            <div key={zone.id} className="bg-white/50 backdrop-blur-md border border-white/80 shadow-sm rounded-xl overflow-hidden">
+              <div className="bg-dark/5 px-6 py-4 border-b border-dark/10 flex justify-between items-center">
+                <h3 className="font-bold text-[15px] text-dark">{zone.title}</h3>
+                <div className="text-[14px] flex gap-4 text-dark/80">
+                  <span>Балл: <span className="metric font-semibold text-dark">{zoneState.total}/20</span></span>
                   <span className={cn(
-                    "metric font-medium",
+                    "metric font-semibold",
                     zoneState.percent < 50 ? "text-error" : zoneState.percent < 70 ? "text-warning" : "text-success"
                   )}>
                     {zoneState.percent}%
@@ -191,7 +191,7 @@ export function Step06_Scoring() {
                 {zone.questions.map((q) => (
                   <div key={q.id} className="flex gap-4 justify-between items-start">
                     <div className="flex-1">
-                      <p className="text-[14px] text-white mb-1.5">{q.text}</p>
+                      <p className="text-[14px] text-dark mb-1.5">{q.text}</p>
                       <p className="text-[12px] text-error/80 flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-error inline-block" />
                         {q.flag}
@@ -217,7 +217,7 @@ export function Step06_Scoring() {
         })}
       </div>
 
-      <div className="bg-surface border border-white/6 rounded-xl p-6 mt-4 flex flex-col xl:flex-row gap-8">
+      <div className="bg-white/50 backdrop-blur-md border border-white/80 shadow-sm rounded-xl p-6 mt-4 flex flex-col xl:flex-row gap-8">
         
         {/* График Радара */}
         <div className="flex-1 xl:max-w-md">
@@ -230,15 +230,15 @@ export function Step06_Scoring() {
         </div>
 
         <div className="flex-1">
-          <h3 className="font-semibold text-lg mb-6">Сводная таблица</h3>
+          <h3 className="font-semibold text-lg text-dark mb-6">Сводная таблица</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-[13px] border-collapse mb-6">
             <thead>
-              <tr className="bg-white/4 text-[11px] text-muted uppercase tracking-wide">
-                <th className="text-left border-b border-white/6 py-3 px-4">Зона</th>
-                <th className="text-right border-b border-white/6 py-3 px-4">Балл</th>
-                <th className="text-right border-b border-white/6 py-3 px-4">Макс</th>
-                <th className="text-right border-b border-white/6 py-3 px-4">%</th>
+              <tr className="bg-dark/5 text-[11px] text-dark/60 uppercase tracking-wide">
+                <th className="text-left border-b border-dark/10 py-3 px-4">Зона</th>
+                <th className="text-right border-b border-dark/10 py-3 px-4">Балл</th>
+                <th className="text-right border-b border-dark/10 py-3 px-4">Макс</th>
+                <th className="text-right border-b border-dark/10 py-3 px-4">%</th>
               </tr>
             </thead>
             <tbody>
@@ -246,30 +246,30 @@ export function Step06_Scoring() {
                 const zState = scoring.zones[z.id as keyof typeof scoring.zones] as any;
                 return (
                   <tr key={z.id}>
-                    <td className="border-b border-white/6 py-2.5 px-4">{z.title}</td>
-                    <td className="border-b border-white/6 py-2.5 px-4 text-right metric">{zState.total}</td>
-                    <td className="border-b border-white/6 py-2.5 px-4 text-right metric">20</td>
+                    <td className="border-b border-dark/10 py-2.5 px-4 text-dark/95">{z.title}</td>
+                    <td className="border-b border-dark/10 py-2.5 px-4 text-right metric text-dark/95 font-semibold">{zState.total}</td>
+                    <td className="border-b border-dark/10 py-2.5 px-4 text-right metric text-dark/80">20</td>
                     <td className={cn(
-                      "border-b border-white/6 py-2.5 px-4 text-right metric",
+                      "border-b border-dark/10 py-2.5 px-4 text-right metric font-semibold",
                       zState.percent < 50 ? "text-error" : zState.percent < 70 ? "text-warning" : "text-success"
                     )}>{zState.percent}%</td>
                   </tr>
                 );
               })}
-              <tr className="bg-white/2">
-                <td className="py-3 px-4 font-semibold">ИТОГО</td>
-                <td className="py-3 px-4 text-right metric font-semibold">{scoring.totalScore}</td>
-                <td className="py-3 px-4 text-right metric">200</td>
-                <td className="py-3 px-4 text-right metric font-semibold">{scoring.totalPercent}%</td>
+              <tr className="bg-dark/2">
+                <td className="py-3 px-4 font-bold text-dark">ИТОГО</td>
+                <td className="py-3 px-4 text-right metric font-bold text-dark">{scoring.totalScore}</td>
+                <td className="py-3 px-4 text-right metric text-dark/80 font-bold">200</td>
+                <td className="py-3 px-4 text-right metric font-bold text-dark">{scoring.totalPercent}%</td>
               </tr>
             </tbody>
           </table>
         </div>
         
-        <div className="flex justify-between items-center bg-white/5 border border-white/10 p-4 rounded-lg">
-          <span className="text-[14px] text-muted">Статус проекта:</span>
+        <div className="flex justify-between items-center bg-dark/5 border border-dark/10 p-4 rounded-lg">
+          <span className="text-[14px] text-dark/70 font-semibold">Статус проекта:</span>
           <span className={cn(
-            "font-semibold text-[16px]",
+            "font-black text-[16px] tracking-wide",
             scoring.totalPercent <= 40 ? "text-error" : scoring.totalPercent <= 60 ? "text-warning" : "text-success"
           )}>
             {scoring.projectStatus || 'Не определен'}

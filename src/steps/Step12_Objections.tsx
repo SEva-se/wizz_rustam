@@ -45,9 +45,9 @@ export function Step12_Objections() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {objections.map((o, idx) => (
-          <div key={idx} className="bg-surface border border-white/6 rounded-xl p-5 flex flex-col gap-2 transition-all hover:border-white/12">
-            <h3 className="font-semibold text-white text-[15px]">{o.obj}</h3>
-            <p className="text-muted text-[13px] leading-relaxed">{o.meaning}</p>
+          <div key={idx} className="bg-white/50 backdrop-blur-md border border-white/80 rounded-xl p-5 flex flex-col gap-2 transition-all hover:border-accent hover:shadow-md">
+            <h3 className="font-bold text-dark text-[15px]">{o.obj}</h3>
+            <p className="text-dark/70 text-[13.5px] leading-relaxed">{o.meaning}</p>
           </div>
         ))}
       </div>

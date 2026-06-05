@@ -34,19 +34,19 @@ export function Step08_Priority() {
       <div className="overflow-x-auto">
         <table className="w-full text-[13px] border-collapse min-w-[700px]">
           <thead>
-            <tr className="bg-white/4 text-[11px] text-muted uppercase tracking-wide">
-              <th className="text-left border-b border-white/6 py-3 px-4 w-1/3">Проблема / зона</th>
-              <th className="text-center border-b border-white/6 py-3 px-2">Влияние на деньги (1-5)</th>
-              <th className="text-center border-b border-white/6 py-3 px-2">Срочность (1-5)</th>
-              <th className="text-center border-b border-white/6 py-3 px-2">Сложность (1-5)</th>
-              <th className="text-center border-b border-white/6 py-3 px-2">Скорость эфф. (1-5)</th>
-              <th className="text-center border-b border-white/6 py-3 px-4">Приоритет</th>
+            <tr className="bg-dark/5 text-[11px] text-dark/60 uppercase tracking-wide">
+              <th className="text-left border-b border-dark/10 py-3 px-4 w-1/3">Проблема / зона</th>
+              <th className="text-center border-b border-dark/10 py-3 px-2">Влияние на деньги (1-5)</th>
+              <th className="text-center border-b border-dark/10 py-3 px-2">Срочность (1-5)</th>
+              <th className="text-center border-b border-dark/10 py-3 px-2">Сложность (1-5)</th>
+              <th className="text-center border-b border-dark/10 py-3 px-2">Скорость эфф. (1-5)</th>
+              <th className="text-center border-b border-dark/10 py-3 px-4">Приоритет</th>
             </tr>
           </thead>
           <tbody>
             {priorities.map((row, idx) => (
               <tr key={row.id}>
-                <td className="border-b border-white/6 py-2 px-2">
+                <td className="border-b border-dark/10 py-2 px-2">
                   <input
                     type="text"
                     value={row.problem}
@@ -54,7 +54,7 @@ export function Step08_Priority() {
                     placeholder="Название проблемы"
                   />
                 </td>
-                <td className="border-b border-white/6 py-2 px-2 text-center">
+                <td className="border-b border-dark/10 py-2 px-2 text-center">
                   <input
                     type="number"
                     min="1" max="5"
@@ -63,7 +63,7 @@ export function Step08_Priority() {
                     className="w-16 text-center metric mx-auto"
                   />
                 </td>
-                <td className="border-b border-white/6 py-2 px-2 text-center">
+                <td className="border-b border-dark/10 py-2 px-2 text-center">
                   <input
                     type="number"
                     min="1" max="5"
@@ -72,7 +72,7 @@ export function Step08_Priority() {
                     className="w-16 text-center metric mx-auto"
                   />
                 </td>
-                <td className="border-b border-white/6 py-2 px-2 text-center">
+                <td className="border-b border-dark/10 py-2 px-2 text-center">
                   <input
                     type="number"
                     min="1" max="5"
@@ -81,7 +81,7 @@ export function Step08_Priority() {
                     className="w-16 text-center metric mx-auto"
                   />
                 </td>
-                <td className="border-b border-white/6 py-2 px-2 text-center">
+                <td className="border-b border-dark/10 py-2 px-2 text-center">
                   <input
                     type="number"
                     min="1" max="5"
@@ -90,10 +90,10 @@ export function Step08_Priority() {
                     className="w-16 text-center metric mx-auto"
                   />
                 </td>
-                <td className="border-b border-white/6 py-2 px-4 text-center">
+                <td className="border-b border-dark/10 py-2 px-4 text-center">
                   <div className={cn(
-                    "metric font-medium px-2 py-1 inline-block rounded",
-                    row.priority >= 15 ? "bg-success/20 text-success" : row.priority >= 8 ? "bg-warning/20 text-warning" : "bg-white/5 text-muted"
+                    "metric font-semibold px-2 py-1 inline-block rounded",
+                    row.priority >= 12 ? "bg-dark text-accent" : row.priority >= 6 ? "bg-dark/10 text-dark/80" : "bg-dark/5 text-dark/40"
                   )}>
                     {row.priority > 0 ? row.priority.toFixed(1) : '-'}
                   </div>
@@ -104,11 +104,11 @@ export function Step08_Priority() {
         </table>
       </div>
 
-      <div className="bg-surface border border-white/6 rounded-xl p-6">
-        <h3 className="font-semibold text-lg mb-4">ТОП-3 приоритетных проблемы для клиента</h3>
+      <div className="bg-white/50 backdrop-blur-md border border-white/80 shadow-sm rounded-xl p-6">
+        <h3 className="font-semibold text-lg text-dark mb-4">ТОП-3 приоритетных проблемы для клиента</h3>
         <div className="space-y-4">
           <div>
-            <label className="block text-[13px] text-muted mb-1.5">1 приоритет</label>
+            <label className="block text-[13px] text-dark/70 font-bold mb-1.5">1 приоритет</label>
             <textarea
               value={top3Problems[0]}
               onChange={(e) => updateTopProblem(0, e.target.value)}
@@ -116,7 +116,7 @@ export function Step08_Priority() {
             />
           </div>
           <div>
-            <label className="block text-[13px] text-muted mb-1.5">2 приоритет</label>
+            <label className="block text-[13px] text-dark/70 font-bold mb-1.5">2 приоритет</label>
             <textarea
               value={top3Problems[1]}
               onChange={(e) => updateTopProblem(1, e.target.value)}
@@ -124,7 +124,7 @@ export function Step08_Priority() {
             />
           </div>
           <div>
-            <label className="block text-[13px] text-muted mb-1.5">3 приоритет</label>
+            <label className="block text-[13px] text-dark/70 font-bold mb-1.5">3 приоритет</label>
             <textarea
               value={top3Problems[2]}
               onChange={(e) => updateTopProblem(2, e.target.value)}
