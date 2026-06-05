@@ -46,14 +46,30 @@
   .metric { font-family: 'JetBrains Mono', monospace; font-size: 14px; }
 
   label {
-    color: inherit;
+    color: #0A0A0A !important;
     font-family: 'Mulish', 'Muli', sans-serif;
-    font-size: 12px !important;
-    font-weight: 700 !important;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: 14.5px !important;
+    font-weight: 800 !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
     margin-bottom: 8px;
     display: block;
+    opacity: 1 !important;
+  }
+
+  .dark-section label, .bg-surface label {
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+  }
+
+  .text-muted {
+    color: #4A4A4A !important;
+    opacity: 1 !important;
+  }
+
+  .dark-section .text-muted, .bg-surface .text-muted {
+    color: #A0A0A0 !important;
+    opacity: 1 !important;
   }
 }
 
