@@ -36,7 +36,7 @@ export function FinalScreen({ onRestart }: FinalScreenProps) {
   };
 
   return (
-    <div className="min-h-[calc(100vh-80px)] bg-bg flex flex-col items-center justify-center p-6 md:p-12 relative z-10">
+    <div className="min-h-[calc(100vh-80px)] bg-white/20 backdrop-blur-sm flex flex-col items-center justify-center p-6 md:p-12 relative z-10">
       <div className="w-full max-w-4xl flex flex-col items-center text-center">
         
         <motion.div 
@@ -60,7 +60,7 @@ export function FinalScreen({ onRestart }: FinalScreenProps) {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-xl md:text-2xl font-bold max-w-xl mb-12 text-dark/80"
+          className="text-xl md:text-2xl font-bold max-w-xl mb-12 text-dark"
         >
           Все данные успешно сохранены. Теперь вы можете выгрузить отчет или начать новую сессию.
         </motion.p>

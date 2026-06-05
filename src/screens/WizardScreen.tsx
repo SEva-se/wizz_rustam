@@ -57,14 +57,14 @@ export function WizardScreen({ onFinish }: WizardScreenProps) {
     <div className="flex h-[calc(100vh-80px)] overflow-hidden relative border-t border-borderLight z-10">
       
       {/* Sidebar Navigation */}
-      <div className="border-r border-borderLight bg-white hidden md:block">
+      <div className="border-r border-white/50 bg-white/40 backdrop-blur-md hidden md:block">
         <StepNavigation currentStep={currentStep} onStepClick={setCurrentStep} />
       </div>
       
-      <div className="flex flex-col flex-1 overflow-hidden relative">
-        <header className="sticky top-0 z-20 bg-bg/95 border-b border-borderLight py-4 px-8 md:px-12 flex flex-col gap-2 shrink-0">
+      <div className="flex flex-col flex-1 overflow-hidden relative bg-white/20 backdrop-blur-sm">
+        <header className="sticky top-0 z-20 bg-white/70 backdrop-blur-md border-b border-white/50 py-4 px-8 md:px-12 flex flex-col gap-2 shrink-0 shadow-sm">
           <div className="flex justify-between items-center w-full">
-            <div className="text-[10px] font-bold tracking-widest uppercase font-mono text-muted">
+            <div className="text-[10px] font-bold tracking-widest uppercase font-mono text-dark/60">
               [ {currentStep} / {TOTAL_STEPS} ]
             </div>
             <div className="text-sm font-black uppercase tracking-tight text-dark">
@@ -88,7 +88,7 @@ export function WizardScreen({ onFinish }: WizardScreenProps) {
           </AnimatePresence>
         </main>
         
-        <footer className="px-6 md:px-12 py-6 border-t border-borderLight bg-white flex justify-between shrink-0 z-20">
+        <footer className="px-6 md:px-12 py-6 border-t border-white/50 bg-white/60 backdrop-blur-md flex justify-between shrink-0 z-20 shadow-sm">
           <button
             onClick={handlePrev}
             disabled={currentStep === 1}

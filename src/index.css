@@ -65,6 +65,62 @@
       linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
   }
+
+  /* Premium Mesh Background */
+  .premium-mesh-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: #FDFCFB;
+    overflow: hidden;
+  }
+  .mesh-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.6;
+    animation: moveBlob 20s infinite alternate ease-in-out;
+  }
+  .blob-1 {
+    width: 60vw;
+    height: 60vw;
+    background: #E5FF00; /* Subtle accent */
+    top: -20vh;
+    left: -10vw;
+    animation-delay: 0s;
+    opacity: 0.15;
+  }
+  .blob-2 {
+    width: 50vw;
+    height: 50vw;
+    background: #DDDDDD; /* Light grey */
+    bottom: -10vh;
+    right: -10vw;
+    animation-delay: -5s;
+    opacity: 0.5;
+  }
+  .blob-3 {
+    width: 45vw;
+    height: 45vw;
+    background: #F4F4F0;
+    top: 30vh;
+    left: 40vw;
+    animation-delay: -10s;
+    opacity: 0.8;
+  }
+  .mesh-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, #FDFCFB 100%);
+    opacity: 0.7;
+    z-index: 1;
+  }
+  @keyframes moveBlob {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(10vw, 5vh) scale(1.1); }
+    66% { transform: translate(-5vw, 15vh) scale(0.9); }
+    100% { transform: translate(-15vw, -5vh) scale(1); }
+  }
   
   /* Headings like KYMA */
   .heading-mega {
