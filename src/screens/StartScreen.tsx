@@ -1,6 +1,20 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { useDiagnostic } from '../context/DiagnosticContext';
 import { loadSession } from '../hooks/useAutoSave';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 24 } }
+};
 
 interface StartScreenProps {
   onStart: () => void;
@@ -27,12 +41,24 @@ export function StartScreen({ onStart }: StartScreenProps) {
   };
 
   return (
-    <div className="min-h-screen bg-bg flex items-center justify-center p-6">
-      <div className="w-full max-w-md bg-surface border border-white/6 rounded-2xl p-8">
-        <h1 className="text-2xl font-semibold mb-6">Диагностическая Карта</h1>
+    <div className="min-h-screen bg-bg flex items-center justify-center p-6 relative overflow-hidden">
+      {/* Фоновые акценты */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue/10 rounded-full blur-[100px] animate-pulse-slow"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-600/5 rounded-full blur-[120px] animate-float"></div>
+      
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="w-full max-w-md glass-panel rounded-2xl p-8 relative z-10"
+      >
+        <motion.div variants={itemVariants} className="mb-8 text-center">
+          <h1 className="text-3xl font-bold mb-2 text-gradient">Диагностическая Карта</h1>
+          <p className="text-muted text-[14px]">Заполните базовую информацию для начала сессии</p>
+        </motion.div>
         
         {hasSession && (
-          <div className="mb-6 p-4 bg-white/5 border border-white/10 rounded-lg">
+          <motion.div variants={itemVariants} className="mb-6 p-4 bg-white/5 border border-white/10 rounded-lg">
             <p className="text-[14px] mb-3">Найдена незавершенная сессия. Хотите продолжить?</p>
             <div className="flex gap-3">
               <button
@@ -48,10 +74,10 @@ export function StartScreen({ onStart }: StartScreenProps) {
                 Начать заново
               </button>
             </div>
-          </div>
+          </motion.div>
         )}
 
-        <div className="space-y-4">
+        <motion.div variants={itemVariants} className="space-y-4">
           <div>
             <label className="block text-[13px] text-muted mb-1.5">Имя клиента</label>
             <input
@@ -70,17 +96,19 @@ export function StartScreen({ onStart }: StartScreenProps) {
               onChange={(e) => updateData({ sessionDate: e.target.value })}
             />
           </div>
-        </div>
+        </motion.div>
 
         {!hasSession && (
-          <button
-            onClick={handleStart}
-            className="w-full mt-8 bg-blue text-white py-3 rounded-lg font-medium hover:bg-blue/90 transition-colors"
-          >
-            Начать диагностику
-          </button>
+          <motion.div variants={itemVariants}>
+            <button
+              onClick={handleStart}
+              className="w-full mt-8 bg-gradient-to-r from-blue to-cyan-500 text-white py-3.5 rounded-lg font-semibold hover:glow-blue hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 btn-shine"
+            >
+              Начать диагностику
+            </button>
+          </motion.div>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }

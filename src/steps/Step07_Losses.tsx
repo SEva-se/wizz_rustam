@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useDiagnostic } from '../context/DiagnosticContext';
 import { ComputedField } from '../components/ComputedField';
+import { LossesFunnel } from '../components/charts/LossesFunnel';
 import { calcConversionLoss, calcCheckLoss, calcRepeatLoss, calcUpsellLoss, formatCurrency } from '../utils/calculations';
 
 export function Step07_Losses() {
@@ -146,6 +147,11 @@ export function Step07_Losses() {
             onOverride={(val) => { updateField('upsellLoss', val); updateField('upsellLoss_override', true); }}
             onReset={() => updateField('upsellLoss_override', false)}
             prefix="₽"
+          />
+          <LossesFunnel 
+            lostConversion={Number(cConvLoss)}
+            lostCheck={Number(cCheckLoss) + Number(cUpsellLoss)}
+            lostRepeat={Number(cRepeatLoss)}
           />
         </div>
       </div>

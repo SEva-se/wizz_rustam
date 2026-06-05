@@ -4,7 +4,7 @@
 
 @layer base {
   html { font-family: 'Inter', system-ui, sans-serif; }
-  body { background: #0a0a0a; color: #f5f5f5; font-size: 14px; }
+  body { background: #0a0a0a; color: #f5f5f5; font-size: 14px; overflow-x: hidden; }
   input, textarea, select {
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.10);
@@ -14,16 +14,81 @@
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     width: 100%;
-    transition: border-color 150ms ease, box-shadow 150ms ease;
+    transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
   }
   input:focus, textarea:focus, select:focus {
     outline: none;
     border-color: #0071e3;
-    box-shadow: 0 0 0 3px rgba(0,113,227,0.15);
+    background: rgba(255,255,255,0.06);
+    box-shadow: 0 0 0 3px rgba(0,113,227,0.15), 0 0 20px rgba(0,113,227,0.1);
   }
   input::placeholder, textarea::placeholder { color: #555; }
   /* Числа в таблицах и метриках — моноширинный шрифт */
   .metric { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+
+  /* Глобальный стиль для всех лейблов (вопросов) */
+  label {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.01em;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+  }
+}
+
+@layer utilities {
+  .bg-gradient-radial {
+    background-image: radial-gradient(var(--tw-gradient-stops));
+  }
+  .glass-panel {
+    @apply bg-surface/80 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)];
+  }
+  .glow-blue {
+    box-shadow: 0 0 40px -10px rgba(0, 113, 227, 0.4);
+  }
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue to-cyan-400;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-pulse-slow {
+    animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shine {
+  0% { left: -100%; opacity: 0; }
+  20% { left: 100%; opacity: 0.6; }
+  100% { left: 100%; opacity: 0; }
+}
+
+@layer utilities {
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-shine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-20deg);
+    animation: shine 4s infinite;
+  }
 }
 
 /* Custom premium dark scrollbar styling */

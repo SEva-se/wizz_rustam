@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useDiagnostic } from '../context/DiagnosticContext';
 import { ComputedField } from '../components/ComputedField';
+import { GapBridge } from '../components/charts/GapBridge';
 import { calcGap, calcMultiplier, calcAverageCheck, calcConversionRate, calcLTV, formatCurrency } from '../utils/calculations';
 
 export function Step05_Gap() {
@@ -34,6 +35,8 @@ export function Step05_Gap() {
         <h2 className="text-2xl font-semibold mb-2">4. Gap Analysis</h2>
         <p className="text-muted text-[14px]">Цель: визуализировать разрыв. Клиент должен увидеть масштаб пространства между сейчас и хочу.</p>
       </div>
+
+      <GapBridge currentRevenue={Number(metrics.monthlyRevenue)} targetRevenue={Number(goals.targetRevenue)} />
 
       <div className="overflow-x-auto">
         <table className="w-full text-[13px] border-collapse">

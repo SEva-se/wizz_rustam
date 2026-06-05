@@ -54,10 +54,14 @@ export function WizardScreen({ onFinish }: WizardScreenProps) {
   };
 
   return (
-    <div className="flex h-screen bg-bg text-accent overflow-hidden">
+    <div className="flex h-screen bg-bg text-accent overflow-hidden relative">
+      {/* Фоновые элементы */}
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-blue/5 rounded-full blur-[150px] animate-pulse-slow pointer-events-none"></div>
+      <div className="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-cyan-600/5 rounded-full blur-[150px] animate-float pointer-events-none"></div>
+
       <StepNavigation currentStep={currentStep} onStepClick={setCurrentStep} />
       
-      <div className="flex flex-col flex-1 overflow-hidden relative">
+      <div className="flex flex-col flex-1 overflow-hidden relative z-10">
         <header className="sticky top-0 z-20 bg-bg/85 backdrop-blur-md border-b border-white/6 py-4 px-12 flex justify-between items-center shrink-0">
           <ProgressBar currentStep={currentStep} totalSteps={TOTAL_STEPS} />
           
@@ -80,18 +84,18 @@ export function WizardScreen({ onFinish }: WizardScreenProps) {
           </AnimatePresence>
         </main>
         
-        <footer className="px-12 py-6 border-t border-white/6 flex justify-between shrink-0 bg-bg z-10">
+        <footer className="px-12 py-6 border-t border-white/6 flex justify-between shrink-0 glass-panel z-20">
           <button
             onClick={handlePrev}
             disabled={currentStep === 1}
-            className="border border-white/15 text-white font-medium text-[15px] px-8 py-3 rounded-lg hover:bg-white/5 transition-all disabled:opacity-30 cursor-pointer"
+            className="border border-white/15 text-white font-medium text-[15px] px-8 py-3 rounded-lg hover:bg-white/10 transition-all duration-300 disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer"
           >
             ← Назад
           </button>
           
           <button
             onClick={handleNext}
-            className="bg-white text-black font-semibold text-[15px] px-8 py-3 rounded-lg hover:bg-white/90 transition-all cursor-pointer"
+            className="bg-gradient-to-r from-blue to-cyan-500 text-white font-semibold text-[15px] px-8 py-3 rounded-lg hover:glow-blue hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer btn-shine"
           >
             {currentStep === TOTAL_STEPS ? 'Завершить и перейти к PDF →' : 'Далее →'}
           </button>

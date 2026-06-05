@@ -1,4 +1,5 @@
 import { Check } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { cn } from '../utils/cn';
 
 interface StepNavigationProps {
@@ -38,24 +39,32 @@ export function StepNavigation({ currentStep, onStepClick }: StepNavigationProps
               key={step.id}
               onClick={() => onStepClick(step.id)}
               className={cn(
-                "px-4 py-2.5 text-[13px] cursor-pointer flex items-center gap-3 transition-all text-left",
+                "px-4 py-3 text-[13px] cursor-pointer flex items-center gap-3 transition-all text-left relative group",
                 isActive 
-                  ? "bg-white/6 border-l-2 border-blue text-white font-semibold" 
+                  ? "text-white font-semibold" 
                   : isPassed
-                    ? "text-white/50 border-l-2 border-transparent hover:bg-white/2"
-                    : "text-white/30 border-l-2 border-transparent hover:bg-white/2"
+                    ? "text-white/50 hover:text-white/80"
+                    : "text-white/30 hover:text-white/60"
               )}
             >
-              <span className="shrink-0 w-4 flex justify-center">
+              {isActive && (
+                <motion.div
+                  layoutId="activeStep"
+                  className="absolute inset-0 bg-blue/15 border-l-2 border-blue"
+                  initial={false}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+              <span className="shrink-0 w-4 flex justify-center relative z-10">
                 {isPassed ? (
                   <Check size={12} className="text-success" />
                 ) : isActive ? (
-                  <span className="font-semibold text-blue text-[11px]">{step.id}</span>
+                  <span className="font-semibold text-blue text-[11px] drop-shadow-[0_0_8px_rgba(0,113,227,0.8)]">{step.id}</span>
                 ) : (
-                  null
+                  <span className="group-hover:text-white/60 transition-colors">{step.id}</span>
                 )}
               </span>
-              <span className="truncate">{step.title}</span>
+              <span className="truncate relative z-10">{step.title}</span>
             </button>
           );
         })}

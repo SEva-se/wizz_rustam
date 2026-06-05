@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDiagnostic } from '../context/DiagnosticContext';
 import { ScoreSlider } from '../components/ScoreSlider';
 import { AiButton } from '../components/AiButton';
+import { ScoringRadar } from '../components/charts/ScoringRadar';
 import { calcZoneTotal, calcZonePercent, calcTotalScore, calcTotalPercent, calcProjectStatus } from '../utils/calculations';
 import { callOpenAI, buildScoringPrompt } from '../services/openai';
 import { cn } from '../utils/cn';
@@ -216,8 +217,20 @@ export function Step06_Scoring() {
         })}
       </div>
 
-      <div className="bg-surface border border-white/6 rounded-xl p-6 mt-4">
-        <h3 className="font-semibold text-lg mb-6">Сводная таблица</h3>
+      <div className="bg-surface border border-white/6 rounded-xl p-6 mt-4 flex flex-col xl:flex-row gap-8">
+        
+        {/* График Радара */}
+        <div className="flex-1 xl:max-w-md">
+          <ScoringRadar 
+            zones={ZONES_META.map(z => {
+              const zState = scoring.zones[z.id as keyof typeof scoring.zones] as any;
+              return { title: z.title, percent: zState.percent || 0 };
+            })}
+          />
+        </div>
+
+        <div className="flex-1">
+          <h3 className="font-semibold text-lg mb-6">Сводная таблица</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-[13px] border-collapse mb-6">
             <thead>
@@ -277,6 +290,7 @@ export function Step06_Scoring() {
             className="w-full min-h-[200px] leading-relaxed"
             placeholder="Здесь появится интерпретация AI..."
           />
+        </div>
         </div>
       </div>
     </div>
