@@ -175,6 +175,15 @@
   scrollbar-color: #E5FF00 rgba(0, 0, 0, 0.02);
 }
 
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+
 /* Global legibility overrides for labels and muted text (loaded at the end to guarantee precedence) */
 label, 
 .text-muted {
