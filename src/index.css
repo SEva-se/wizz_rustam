@@ -46,30 +46,9 @@
   .metric { font-family: 'JetBrains Mono', monospace; font-size: 14px; }
 
   label {
-    color: #0A0A0A !important;
     font-family: 'Mulish', 'Muli', sans-serif;
-    font-size: 14.5px !important;
-    font-weight: 800 !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
     margin-bottom: 8px;
     display: block;
-    opacity: 1 !important;
-  }
-
-  .dark-section label, .bg-surface label {
-    color: #FFFFFF !important;
-    opacity: 1 !important;
-  }
-
-  .text-muted {
-    color: #4A4A4A !important;
-    opacity: 1 !important;
-  }
-
-  .dark-section .text-muted, .bg-surface .text-muted {
-    color: #A0A0A0 !important;
-    opacity: 1 !important;
   }
 }
 
@@ -131,5 +110,40 @@
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+/* Global legibility overrides for labels and muted text (loaded at the end to guarantee precedence) */
+label, 
+.text-muted {
+  opacity: 1 !important;
+}
+
+label {
+  color: #0A0A0A !important;
+  font-family: 'Mulish', 'Muli', sans-serif !important;
+  font-size: 14.5px !important;
+  font-weight: 800 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+}
+
+.dark-section label, 
+.bg-surface label,
+[class*="bg-surface"] label,
+[class*="bg-dark"] label {
+  color: #FFFFFF !important;
+}
+
+.text-muted {
+  color: #2D2D2D !important; /* Extremely clear dark gray for text descriptions */
+}
+
+.dark-section .text-muted, 
+.bg-surface .text-muted,
+[class*="bg-surface"] .text-muted,
+[class*="bg-dark"] .text-muted {
+  color: #E0E0E0 !important; /* Clear light gray for text descriptions in dark sections */
 }
 
