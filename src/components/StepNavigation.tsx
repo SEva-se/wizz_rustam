@@ -24,12 +24,12 @@ export const STEPS = [
 
 export function StepNavigation({ currentStep, onStepClick }: StepNavigationProps) {
   return (
-    <div className="w-[220px] h-screen bg-[#0d0d0d] border-r border-white/6 flex flex-col py-6 overflow-y-auto shrink-0">
-      <div className="px-4 mb-6">
-        <h2 className="text-white font-semibold text-[14px]">Диагностика</h2>
+    <div className="w-[260px] h-full bg-bg border-r border-borderLight flex flex-col py-6 overflow-y-auto shrink-0 z-10">
+      <div className="px-6 mb-8 mt-20">
+        <h2 className="text-dark font-black tracking-tighter text-lg uppercase">ДИАГНОСТИКА</h2>
       </div>
       
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-1 px-4">
         {STEPS.map((step) => {
           const isActive = currentStep === step.id;
           const isPassed = currentStep > step.id;
@@ -39,29 +39,29 @@ export function StepNavigation({ currentStep, onStepClick }: StepNavigationProps
               key={step.id}
               onClick={() => onStepClick(step.id)}
               className={cn(
-                "px-4 py-3 text-[13px] cursor-pointer flex items-center gap-3 transition-all text-left relative group",
+                "px-3 py-3 text-[12px] font-bold uppercase tracking-wider cursor-pointer flex items-center gap-3 transition-all text-left relative group rounded-md",
                 isActive 
-                  ? "text-white font-semibold" 
+                  ? "text-dark bg-black/5" 
                   : isPassed
-                    ? "text-white/50 hover:text-white/80"
-                    : "text-white/30 hover:text-white/60"
+                    ? "text-dark/60 hover:text-dark/90"
+                    : "text-dark/30 hover:text-dark/60"
               )}
             >
               {isActive && (
                 <motion.div
                   layoutId="activeStep"
-                  className="absolute inset-0 bg-blue/15 border-l-2 border-blue"
+                  className="absolute left-0 top-0 bottom-0 w-1 bg-accent"
                   initial={false}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               )}
-              <span className="shrink-0 w-4 flex justify-center relative z-10">
+              <span className="shrink-0 w-5 flex justify-center relative z-10">
                 {isPassed ? (
-                  <Check size={12} className="text-success" />
+                  <Check size={14} className="text-dark" />
                 ) : isActive ? (
-                  <span className="font-semibold text-blue text-[11px] drop-shadow-[0_0_8px_rgba(0,113,227,0.8)]">{step.id}</span>
+                  <span className="text-dark bg-accent px-1">{(step.id).toString().padStart(2, '0')}</span>
                 ) : (
-                  <span className="group-hover:text-white/60 transition-colors">{step.id}</span>
+                  <span className="group-hover:text-dark/60 transition-colors">{(step.id).toString().padStart(2, '0')}</span>
                 )}
               </span>
               <span className="truncate relative z-10">{step.title}</span>

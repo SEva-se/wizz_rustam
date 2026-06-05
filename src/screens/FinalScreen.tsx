@@ -3,7 +3,8 @@ import { useDiagnostic } from '../context/DiagnosticContext';
 import { clearSession } from '../hooks/useAutoSave';
 import { exportToPDF } from '../utils/pdfExport';
 import { PdfTemplate } from '../components/PdfTemplate';
-import { FileText, Loader2, RefreshCw, Check } from 'lucide-react';
+import { FileText, Loader2, RefreshCw, CheckCircle2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface FinalScreenProps {
   onRestart: () => void;
@@ -35,40 +36,59 @@ export function FinalScreen({ onRestart }: FinalScreenProps) {
   };
 
   return (
-    <div className="min-h-screen bg-bg flex flex-col items-center justify-center p-12 relative overflow-hidden">
-      {/* Фоновые свечения */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue/10 rounded-full blur-[150px] animate-pulse-slow"></div>
-      <div className="absolute bottom-[-100px] left-[-100px] w-[500px] h-[500px] bg-success/10 rounded-full blur-[120px] animate-float"></div>
-
-      <div className="glass-panel p-12 rounded-3xl w-full max-w-2xl text-center mb-12 relative z-10">
-        <div className="flex justify-center mb-8">
-          <div className="w-20 h-20 bg-gradient-to-br from-blue to-cyan-400 rounded-full flex items-center justify-center shadow-glow animate-float">
-            <Check size={40} className="text-white" />
-          </div>
-        </div>
-        <h1 className="text-4xl font-bold mb-4 text-gradient">Диагностика завершена</h1>
-        <p className="text-muted text-[16px] max-w-md mx-auto">
-          Все данные сохранены. Вы можете скачать итоговый PDF-отчет для клиента.
-        </p>
-      </div>
-
-      <div className="flex gap-4 mb-16 relative z-10">
-        <button
-          onClick={handleExport}
-          disabled={isExporting}
-          className="bg-gradient-to-r from-blue to-cyan-500 text-white px-8 py-3.5 rounded-lg font-semibold hover:glow-blue hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center gap-2 disabled:opacity-50 disabled:hover:scale-100 disabled:hover:glow-none btn-shine"
-        >
-          {isExporting ? <Loader2 size={20} className="animate-spin" /> : <FileText size={20} />}
-          Скачать PDF-отчет
-        </button>
+    <div className="min-h-[calc(100vh-80px)] bg-bg flex flex-col items-center justify-center p-6 md:p-12 relative z-10">
+      <div className="w-full max-w-4xl flex flex-col items-center text-center">
         
-        <button
-          onClick={handleNewSession}
-          className="glass-panel text-white px-8 py-3.5 rounded-lg font-medium hover:bg-white/10 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center gap-2"
+        <motion.div 
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="mb-8 flex items-center justify-center w-24 h-24 bg-accent rounded-full border-4 border-dark"
         >
-          <RefreshCw size={20} />
-          Начать новую
-        </button>
+          <CheckCircle2 size={48} className="text-dark" />
+        </motion.div>
+        
+        <motion.h1 
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          className="heading-mega text-dark mb-6"
+        >
+          ГОТОВО.
+        </motion.h1>
+        
+        <motion.p 
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="text-xl md:text-2xl font-bold max-w-xl mb-12 text-dark/80"
+        >
+          Все данные успешно сохранены. Теперь вы можете выгрузить отчет или начать новую сессию.
+        </motion.p>
+        
+        <motion.div 
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+        >
+          <button
+            onClick={handleExport}
+            disabled={isExporting}
+            className="btn-primary flex-1 sm:flex-none text-base px-8 py-4"
+          >
+            {isExporting ? <Loader2 size={24} className="animate-spin" /> : <FileText size={24} />}
+            СКАЧАТЬ PDF
+          </button>
+          
+          <button
+            onClick={handleNewSession}
+            className="btn-dark flex-1 sm:flex-none text-base px-8 py-4 bg-transparent text-dark border-dark hover:bg-dark hover:text-white"
+          >
+            <RefreshCw size={24} />
+            НОВАЯ СЕССИЯ
+          </button>
+        </motion.div>
+
       </div>
       
       {/* Скрытый шаблон для PDF */}

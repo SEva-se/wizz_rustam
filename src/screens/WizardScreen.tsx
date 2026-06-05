@@ -54,29 +54,33 @@ export function WizardScreen({ onFinish }: WizardScreenProps) {
   };
 
   return (
-    <div className="flex h-screen bg-bg text-accent overflow-hidden relative">
-      {/* Фоновые элементы */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-blue/5 rounded-full blur-[150px] animate-pulse-slow pointer-events-none"></div>
-      <div className="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-cyan-600/5 rounded-full blur-[150px] animate-float pointer-events-none"></div>
-
-      <StepNavigation currentStep={currentStep} onStepClick={setCurrentStep} />
+    <div className="flex h-[calc(100vh-80px)] overflow-hidden relative border-t border-borderLight z-10">
       
-      <div className="flex flex-col flex-1 overflow-hidden relative z-10">
-        <header className="sticky top-0 z-20 bg-bg/85 backdrop-blur-md border-b border-white/6 py-4 px-12 flex justify-between items-center shrink-0">
-          <ProgressBar currentStep={currentStep} totalSteps={TOTAL_STEPS} />
-          
-          <div className="text-[13px] text-muted font-medium">
-            Шаг {currentStep} из {TOTAL_STEPS} — {currentStepTitle}
+      {/* Sidebar Navigation */}
+      <div className="border-r border-borderLight bg-white hidden md:block">
+        <StepNavigation currentStep={currentStep} onStepClick={setCurrentStep} />
+      </div>
+      
+      <div className="flex flex-col flex-1 overflow-hidden relative">
+        <header className="sticky top-0 z-20 bg-bg/95 border-b border-borderLight py-4 px-8 md:px-12 flex flex-col gap-2 shrink-0">
+          <div className="flex justify-between items-center w-full">
+            <div className="text-[10px] font-bold tracking-widest uppercase font-mono text-muted">
+              [ {currentStep} / {TOTAL_STEPS} ]
+            </div>
+            <div className="text-sm font-black uppercase tracking-tight text-dark">
+              {currentStepTitle}
+            </div>
           </div>
+          <ProgressBar currentStep={currentStep} totalSteps={TOTAL_STEPS} />
         </header>
         
-        <main className="flex-1 overflow-y-auto px-12 py-10 max-w-4xl mx-auto w-full">
+        <main className="flex-1 overflow-y-auto px-6 md:px-12 py-10 max-w-4xl w-full">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
             >
               {renderStep()}
@@ -84,20 +88,20 @@ export function WizardScreen({ onFinish }: WizardScreenProps) {
           </AnimatePresence>
         </main>
         
-        <footer className="px-12 py-6 border-t border-white/6 flex justify-between shrink-0 glass-panel z-20">
+        <footer className="px-6 md:px-12 py-6 border-t border-borderLight bg-white flex justify-between shrink-0 z-20">
           <button
             onClick={handlePrev}
             disabled={currentStep === 1}
-            className="border border-white/15 text-white font-medium text-[15px] px-8 py-3 rounded-lg hover:bg-white/10 transition-all duration-300 disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer"
+            className="btn-dark px-6 disabled:opacity-30 disabled:cursor-not-allowed bg-transparent text-dark border-borderLight hover:bg-dark hover:text-white"
           >
             ← Назад
           </button>
           
           <button
             onClick={handleNext}
-            className="bg-gradient-to-r from-blue to-cyan-500 text-white font-semibold text-[15px] px-8 py-3 rounded-lg hover:glow-blue hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer btn-shine"
+            className="btn-primary px-10"
           >
-            {currentStep === TOTAL_STEPS ? 'Завершить и перейти к PDF →' : 'Далее →'}
+            {currentStep === TOTAL_STEPS ? 'Завершить →' : 'Далее →'}
           </button>
         </footer>
       </div>

@@ -3,113 +3,117 @@
 @tailwind utilities;
 
 @layer base {
-  html { font-family: 'Inter', system-ui, sans-serif; }
-  body { background: #0a0a0a; color: #f5f5f5; font-size: 14px; overflow-x: hidden; }
+  html { font-family: 'Mulish', 'Muli', system-ui, sans-serif; }
+  body { 
+    background: #F4F4F0; 
+    color: #0A0A0A; 
+    font-size: 14px; 
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  /* Form Elements - Light Theme Default */
   input, textarea, select {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 8px;
-    padding: 10px 14px;
-    color: #f5f5f5;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 4px;
+    padding: 12px 16px;
+    color: #0A0A0A;
+    font-family: 'Mulish', 'Muli', sans-serif;
+    font-size: 15px;
     width: 100%;
-    transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
+    transition: all 200ms ease;
   }
   input:focus, textarea:focus, select:focus {
     outline: none;
-    border-color: #0071e3;
-    background: rgba(255,255,255,0.06);
-    box-shadow: 0 0 0 3px rgba(0,113,227,0.15), 0 0 20px rgba(0,113,227,0.1);
+    border-color: #0A0A0A;
+    background: rgba(0,0,0,0.02);
   }
-  input::placeholder, textarea::placeholder { color: #555; }
-  /* Числа в таблицах и метриках — моноширинный шрифт */
-  .metric { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+  input::placeholder, textarea::placeholder { color: #888; }
+  
+  /* Form Elements - Dark Theme overrides */
+  .dark-section input, .dark-section textarea, .dark-section select {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #FFFFFF;
+  }
+  .dark-section input:focus, .dark-section textarea:focus, .dark-section select:focus {
+    border-color: #E5FF00;
+    box-shadow: 0 0 0 1px #E5FF00;
+  }
+  .dark-section input::placeholder, .dark-section textarea::placeholder { color: #888; }
 
-  /* Глобальный стиль для всех лейблов (вопросов) */
+  .metric { font-family: 'JetBrains Mono', monospace; font-size: 14px; }
+
   label {
-    color: rgba(255, 255, 255, 0.9) !important;
-    font-size: 13.5px !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.01em;
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+    color: inherit;
+    font-family: 'Mulish', 'Muli', sans-serif;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    display: block;
   }
 }
 
 @layer utilities {
-  .bg-gradient-radial {
-    background-image: radial-gradient(var(--tw-gradient-stops));
+  .bg-grid-dark {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   }
-  .glass-panel {
-    @apply bg-surface/80 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)];
+  .bg-grid-light {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
   }
-  .glow-blue {
-    box-shadow: 0 0 40px -10px rgba(0, 113, 227, 0.4);
+  
+  /* Headings like KYMA */
+  .heading-mega {
+    font-family: 'Mulish', 'Muli', sans-serif;
+    @apply text-5xl md:text-7xl lg:text-[100px] leading-[0.9] font-black tracking-tighter;
   }
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue to-cyan-400;
+  .heading-large {
+    font-family: 'Mulish', 'Muli', sans-serif;
+    @apply text-4xl md:text-6xl font-black tracking-tighter leading-tight;
   }
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
+  
+  /* Kyma button style */
+  .btn-primary {
+    font-family: 'Mulish', 'Muli', sans-serif;
+    @apply bg-accent text-dark font-bold uppercase tracking-wide text-sm px-6 py-3 flex items-center justify-center gap-2 transition-all hover:bg-white;
   }
-  .animate-pulse-slow {
-    animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
-@keyframes pulse-slow {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.7; }
-}
-
-@keyframes shine {
-  0% { left: -100%; opacity: 0; }
-  20% { left: 100%; opacity: 0.6; }
-  100% { left: 100%; opacity: 0; }
-}
-
-@layer utilities {
-  .btn-shine {
-    position: relative;
-    overflow: hidden;
-  }
-  .btn-shine::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
-    transform: skewX(-20deg);
-    animation: shine 4s infinite;
+  .btn-dark {
+    font-family: 'Mulish', 'Muli', sans-serif;
+    @apply bg-dark text-white font-bold uppercase tracking-wide text-sm px-6 py-3 flex items-center justify-center gap-2 border border-dark hover:bg-transparent hover:text-dark transition-all;
   }
 }
 
-/* Custom premium dark scrollbar styling */
+/* Custom premium scrollbar styling */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+}
+.dark-section ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 /* Firefox scrollbar compatibility */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 

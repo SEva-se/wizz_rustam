@@ -41,73 +41,99 @@ export function StartScreen({ onStart }: StartScreenProps) {
   };
 
   return (
-    <div className="min-h-screen bg-bg flex items-center justify-center p-6 relative overflow-hidden">
-      {/* Фоновые акценты */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue/10 rounded-full blur-[100px] animate-pulse-slow"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-600/5 rounded-full blur-[120px] animate-float"></div>
+    <div className="min-h-[calc(100vh-80px)] flex flex-col lg:flex-row items-center justify-center p-6 lg:p-16 gap-12 relative z-10">
       
+      {/* Left side: Huge typography */}
       <motion.div 
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="w-full max-w-md glass-panel rounded-2xl p-8 relative z-10"
+        className="flex-1 max-w-3xl"
       >
-        <motion.div variants={itemVariants} className="mb-8 text-center">
-          <h1 className="text-3xl font-bold mb-2 text-gradient">Диагностическая Карта</h1>
-          <p className="text-muted text-[14px]">Заполните базовую информацию для начала сессии</p>
+        <motion.div variants={itemVariants} className="mb-4">
+          <span className="font-mono text-sm font-bold tracking-widest text-dark uppercase">
+            [01] НАЧАЛО РАБОТЫ_
+          </span>
         </motion.div>
+        <motion.h1 
+          variants={itemVariants} 
+          className="heading-mega text-dark mb-8"
+        >
+          ТОЧНАЯ <br/>ДИАГНОСТИКА <span className="text-accent bg-dark px-2">[100%]</span><br/>РЕЗУЛЬТАТ.
+        </motion.h1>
+        <motion.p variants={itemVariants} className="text-xl md:text-2xl font-medium max-w-xl">
+          Мы создаем индивидуальные системы, которые автоматизируют рутину, чтобы вы могли сосредоточиться на росте.
+        </motion.p>
+      </motion.div>
+      
+      {/* Right side: Dark form card (like the calculator reference) */}
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="w-full lg:w-[480px] bg-dark text-white p-8 md:p-10 shadow-2xl relative overflow-hidden dark-section"
+      >
+        <div className="absolute inset-0 pointer-events-none bg-grid-dark opacity-30" />
         
-        {hasSession && (
-          <motion.div variants={itemVariants} className="mb-6 p-4 bg-white/5 border border-white/10 rounded-lg">
-            <p className="text-[14px] mb-3">Найдена незавершенная сессия. Хотите продолжить?</p>
-            <div className="flex gap-3">
-              <button
-                onClick={handleStart}
-                className="flex-1 bg-white text-black py-2 rounded-lg font-medium text-[13px] hover:bg-white/90"
-              >
-                Продолжить
-              </button>
-              <button
-                onClick={handleRestart}
-                className="flex-1 border border-white/15 text-white py-2 rounded-lg font-medium text-[13px] hover:bg-white/10"
-              >
-                Начать заново
-              </button>
+        <div className="relative z-10">
+          <motion.div variants={itemVariants} className="mb-8">
+            <h2 className="text-2xl font-black uppercase tracking-tighter mb-2">Параметры сессии</h2>
+            <p className="text-white/60 text-sm">Введите данные клиента для старта</p>
+          </motion.div>
+          
+          {hasSession && (
+            <motion.div variants={itemVariants} className="mb-8 p-4 bg-white/5 border border-white/10">
+              <p className="text-sm mb-4 font-bold uppercase tracking-wider text-accent">Найдена незавершенная сессия</p>
+              <div className="flex gap-3">
+                <button
+                  onClick={handleStart}
+                  className="flex-1 bg-white text-dark py-2 font-bold uppercase text-xs tracking-wider hover:bg-accent transition-colors"
+                >
+                  Продолжить
+                </button>
+                <button
+                  onClick={handleRestart}
+                  className="flex-1 border border-white/20 text-white py-2 font-bold uppercase text-xs tracking-wider hover:bg-white/10 transition-colors"
+                >
+                  Заново
+                </button>
+              </div>
+            </motion.div>
+          )}
+
+          <motion.div variants={itemVariants} className="space-y-6">
+            <div>
+              <label>Имя клиента</label>
+              <input
+                type="text"
+                value={data.clientName}
+                onChange={(e) => updateData({ clientName: e.target.value })}
+                placeholder="Например, Иван Иванов"
+              />
+            </div>
+            
+            <div>
+              <label>Дата сессии</label>
+              <input
+                type="date"
+                value={data.sessionDate}
+                onChange={(e) => updateData({ sessionDate: e.target.value })}
+              />
             </div>
           </motion.div>
-        )}
 
-        <motion.div variants={itemVariants} className="space-y-4">
-          <div>
-            <label className="block text-[13px] text-muted mb-1.5">Имя клиента</label>
-            <input
-              type="text"
-              value={data.clientName}
-              onChange={(e) => updateData({ clientName: e.target.value })}
-              placeholder="Например, Иван Иванов"
-            />
-          </div>
-          
-          <div>
-            <label className="block text-[13px] text-muted mb-1.5">Дата сессии</label>
-            <input
-              type="date"
-              value={data.sessionDate}
-              onChange={(e) => updateData({ sessionDate: e.target.value })}
-            />
-          </div>
-        </motion.div>
-
-        {!hasSession && (
-          <motion.div variants={itemVariants}>
-            <button
-              onClick={handleStart}
-              className="w-full mt-8 bg-gradient-to-r from-blue to-cyan-500 text-white py-3.5 rounded-lg font-semibold hover:glow-blue hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 btn-shine"
-            >
-              Начать диагностику
-            </button>
-          </motion.div>
-        )}
+          {!hasSession && (
+            <motion.div variants={itemVariants} className="mt-10">
+              <button
+                onClick={handleStart}
+                className="w-full btn-primary"
+              >
+                Начать диагностику
+                <span className="font-mono ml-2">→</span>
+              </button>
+            </motion.div>
+          )}
+        </div>
       </motion.div>
     </div>
   );
