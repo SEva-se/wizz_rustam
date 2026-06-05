@@ -145,29 +145,34 @@
   }
 }
 
-/* Custom premium scrollbar styling */
+/* Custom premium scrollbar styling - Minimalist Yellow Accent */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 0;
+  background: #E5FF00;
+  border: 1.5px solid rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  transition: all 0.2s ease;
 }
 .dark-section ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+  background: #E5FF00;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.4);
+  background: #d4ec00;
+  border-color: rgba(0, 0, 0, 0.3);
 }
 
 /* Firefox scrollbar compatibility */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  scrollbar-color: #E5FF00 rgba(0, 0, 0, 0.02);
 }
 
 /* Global legibility overrides for labels and muted text (loaded at the end to guarantee precedence) */

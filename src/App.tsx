@@ -19,17 +19,17 @@ function AppContent() {
   return (
     <AnimatePresence mode="wait">
       {currentScreen === 'start' && (
-        <motion.div key="start" variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.3 }}>
+        <motion.div key="start" variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.3 }} className="h-full">
           <StartScreen onStart={() => setCurrentScreen('wizard')} />
         </motion.div>
       )}
       {currentScreen === 'wizard' && (
-        <motion.div key="wizard" variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.3 }}>
+        <motion.div key="wizard" variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.3 }} className="h-full">
           <WizardScreen onFinish={() => setCurrentScreen('final')} />
         </motion.div>
       )}
       {currentScreen === 'final' && (
-        <motion.div key="final" variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.3 }}>
+        <motion.div key="final" variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.3 }} className="h-full">
           <FinalScreen onRestart={() => setCurrentScreen('start')} />
         </motion.div>
       )}
