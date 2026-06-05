@@ -8,7 +8,7 @@ import { callOpenAI, buildScoringPrompt } from '../services/openai';
 import { cn } from '../utils/cn';
 import { Clock } from 'lucide-react';
 
-const ZONES_META = [
+export const ZONES_META = [
   {
     id: 'zone1', title: '1. Позиционирование', questions: [
       { id: 'q1', text: 'Как вы объясняете, чем занимаетесь, в одном предложении?', flag: '"Я помогаю людям стать лучше" — слишком размыто' },

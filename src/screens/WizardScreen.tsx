@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StepNavigation, STEPS } from '../components/StepNavigation';
 import { ProgressBar } from '../components/ProgressBar';
+import { LiveConsole } from '../components/LiveConsole';
 
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -74,19 +75,27 @@ export function WizardScreen({ onFinish }: WizardScreenProps) {
           <ProgressBar currentStep={currentStep} totalSteps={TOTAL_STEPS} />
         </header>
         
-        <main className="flex-1 overflow-y-auto px-6 md:px-12 py-10 max-w-4xl w-full">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentStep}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
-            >
-              {renderStep()}
-            </motion.div>
-          </AnimatePresence>
-        </main>
+        {/* Split Screen main content & live console */}
+        <div className="flex-1 flex overflow-hidden">
+          <main className="flex-1 overflow-y-auto px-6 md:px-12 py-10 max-w-3xl w-full border-r border-dark/5">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentStep}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+              >
+                {renderStep()}
+              </motion.div>
+            </AnimatePresence>
+          </main>
+          
+          {/* Right Live Panel - Visible on desktops */}
+          <aside className="hidden xl:flex w-[350px] bg-white/30 backdrop-blur-md border-l border-white/40 overflow-y-auto p-6 shrink-0 z-10 shadow-2xl no-scrollbar">
+            <LiveConsole />
+          </aside>
+        </div>
         
         <footer className="px-6 md:px-12 py-6 border-t border-white/50 bg-white/60 backdrop-blur-md flex justify-between shrink-0 z-20 shadow-sm">
           <button
