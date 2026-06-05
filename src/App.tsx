@@ -42,10 +42,10 @@ import { Menu } from 'lucide-react';
 function TopNav() {
   return (
     <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 mix-blend-difference text-white">
-      <div className="font-black text-2xl tracking-tighter">WIZARD®</div>
+      <div className="font-black text-2xl tracking-tighter">RUSTAM®</div>
       <div className="hidden md:flex gap-12 text-xs font-bold uppercase tracking-widest">
-        <span>AI AUTOMATION SPECIALISTS</span>
-        <span>SAN FRANCISCO, CA</span>
+        <span>BUSINESS DIAGNOSTICS</span>
+        <span>SYSTEMIC GROWTH</span>
       </div>
       <button className="flex items-center gap-2 border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition-colors font-bold text-xs uppercase tracking-wider">
         <Menu size={16} /> MENU
