@@ -25,7 +25,7 @@ export const STEPS = [
 export function StepNavigation({ currentStep, onStepClick }: StepNavigationProps) {
   return (
     <div className="w-[260px] h-full bg-bg border-r border-borderLight flex flex-col py-6 overflow-y-auto shrink-0 z-10">
-      <div className="px-6 mb-8 mt-20">
+      <div className="px-6 mb-8 mt-2">
         <h2 className="text-dark font-black tracking-tighter text-lg uppercase">ДИАГНОСТИКА</h2>
       </div>
       

@@ -42,14 +42,14 @@ export function StartScreen({ onStart }: StartScreenProps) {
   };
 
   return (
-    <div className="min-h-[calc(100vh-80px)] flex flex-col lg:flex-row items-stretch relative z-10">
+    <div className="h-full flex flex-col lg:flex-row items-stretch relative z-10 overflow-hidden">
       
       {/* Left side: Configurator Form & Typography */}
       <motion.div 
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="flex-1 flex flex-col justify-center p-8 lg:p-12 xl:p-20 bg-white/40 backdrop-blur-md z-10 shadow-2xl border-r border-black/5"
+        className="flex-1 flex flex-col justify-center p-8 lg:p-12 xl:p-20 bg-white/40 backdrop-blur-md z-10 shadow-2xl border-r border-black/5 overflow-y-auto h-full"
       >
         <div className="max-w-xl w-full mx-auto lg:mx-0 py-6">
           <motion.div variants={itemVariants} className="mb-4">

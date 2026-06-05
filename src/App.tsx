@@ -59,7 +59,7 @@ export default function App() {
     <DiagnosticProvider>
       <ParticlesBackground />
       <TopNav />
-      <div className="pt-20 min-h-screen">
+      <div className="pt-20 h-screen overflow-hidden">
         <AppContent />
       </div>
     </DiagnosticProvider>

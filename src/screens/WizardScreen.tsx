@@ -54,7 +54,7 @@ export function WizardScreen({ onFinish }: WizardScreenProps) {
   };
 
   return (
-    <div className="flex h-[calc(100vh-80px)] overflow-hidden relative border-t border-borderLight z-10">
+    <div className="flex h-full overflow-hidden relative border-t border-borderLight z-10">
       
       {/* Sidebar Navigation */}
       <div className="border-r border-white/50 bg-white/40 backdrop-blur-md hidden md:block">
